@@ -608,13 +608,15 @@
                 }
                 #main-newstand-top {
                     flex:1;
-                    padding:18px 20px;
+                    margin:18px 20px 18px 20px;
                 }
                 #main-newstand header{
                     color: rgba(8, 8, 8, .5);
                     font-size: 1.6rem;
                     display:flex;
                     justify-content:flex-start;
+                    line-height:23px;
+                    margin-bottom: 17px;
                 }
                 #main-newstand header .bold {
                     font-weight: bold;
@@ -623,6 +625,10 @@
                 #main-newstand-gray {
                     display:flex;
                     justify-content: flex-start;
+                    height:50px;
+                    padding:12px 20px;
+                    background-color: var(--color_option_bg);
+                    border-radius: 4px;
                 }
                 #main-newstand a {
                     text-decoration: none;
@@ -632,6 +638,25 @@
                 }
                 #main-newstand a:hover {
                     text-decoration: underline;
+                }
+                #main-newstand-grid {
+                    display: grid;
+                    grid-gap:1px;
+                    background-color: var(--color_border_in);
+                    justify-content: center;
+                    align-items: center;
+                    grid-template-rows: 56px 56px 56px 56px;
+                    grid-template-columns: 131.27px 131.27px 131.27px 131.27px 131.27px 131.27px;
+                    border:1px solid var(--color_border_in);
+                    border-radius: 4px;
+                    margin:18px 20px 18px 20px;
+                }
+                #main-newstand-grid > div {
+                    height: 100%;
+                    background-color: white;
+                    display: flex;
+                    justify-content:center;
+                    align-items: center;
                 }
                 #main-newstand footer {
                     border-top: 1px solid var(--color_border_in);
@@ -655,8 +680,6 @@
                                 <a href="#">전체언론사</a>
                                 <a href="#">연합뉴스</a>
                                 <a href="#">북한, 오물풍선~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</a>
-                            </div>
-                            <div>
                                 <a href="#">뉴스스탠드</a>
                                 <a href="#">뉴스홈</a>
                             </div>
@@ -687,6 +710,7 @@
                             <div>언론사</div>
                             <div>언론사</div>
                         </div>
+
                         <footer>
                             <button><span class="blind">이전</span></button>
                             <div>언론사 더보기 1페이지 전체/4</div>
