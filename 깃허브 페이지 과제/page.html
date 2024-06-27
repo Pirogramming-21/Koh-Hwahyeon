@@ -1,0 +1,117 @@
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>깃허브 페이지</title>
+    <style>
+        body {
+            background-color: rgb(13, 9, 37);
+            background-image: url(./simple-codelines.svg);
+        }
+        #menu {
+            display:flex;
+            position:relative;
+            justify-content: space-between;
+        }
+        #menu ul {
+            display:flex;
+            align-items: center;
+        }
+        #menu ul li {
+            display:inline-flex;
+            color:white;
+            padding: 0px 15px;
+
+        }
+        #menu ul img {
+            width:40px;
+            height:40px;
+        }
+        #menu div input {
+            display:flex;
+            justify-content: right;
+        }
+        #menu input, #menu button {
+            display: flex;
+            align-items: center;
+            height:35px;
+            border-radius:5px;
+            color:white;
+            margin:10px;
+        }
+        #menu input {
+            background-color: darkgray;
+            border:none;
+            width:200px;
+        }
+        #in {
+            border:none;
+            background: none;
+        }
+        #up {
+            background: none;
+            border: 1px solid white;
+        }
+        #right {
+            display: inline-flex;
+            align-items: center;
+        }
+        #main {
+            display:inline-flex;
+            align-items: center;
+            justify-content: center;
+            position:relative;
+            top: 250px;
+            left: 250px;
+        }
+        #explain {
+            color:white;
+            font-size:40px;
+            font-weight:bold;
+
+        }
+        main > div > span {
+            font-size:20px;
+            font-weight:normal;
+            color:gray;
+        }
+        main > div > span > span{
+            color:white;
+        }
+        #box {
+            position: relative;
+            width:300px;
+            height:400px;
+            background-color: white;
+            border: none;
+            border-radius: 5px;
+            left: 250px;
+            top: -200px;
+        }
+    </style>
+</head>
+<body>
+    <nav id="menu">
+            <ul>
+                <li><img src="./25231.png"></li>
+                <li>Why GitHub?</li>
+                <li>Team</li>
+                <li>Enterprise</li>
+                <li>Explore</li>
+                <li>Marketplace</li>
+                <li>Pricing</li>
+            </ul>
+            <div id="right">
+                <input id="search" type="text" placeholder="Search GitHub">
+                <button id="in">Sign in</button>
+                <button id="up">Sign up</button>
+            </div>
+    </nav>
+    <main id="main">
+        <div id="explain">Built for<br> developers<br><span>GitHub is a development platform inspired by the<br> way you work. Form <span>open source</span> to<span> business</span>, you<br> can host and review code, manage projects, and<br> build software alongside 50 million developers.</span> </span></div>
+        <div id="box">
+            <input type="text">
+        </div>
+    </main>
+</body>
+</html>
