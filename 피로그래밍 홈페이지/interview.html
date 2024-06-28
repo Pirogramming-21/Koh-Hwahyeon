@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<link rel="stylesheet" href="./Piro21-responsive/reset.css">
+<link rel="stylesheet" href="./Piro21-responsive/piro-clone/styles/variable.css">
+<link rel="stylesheet" href="./Piro21-responsive/piro-clone/styles/header.css">
+<link rel="stylesheet" href="./Piro21-responsive/piro-clone/styles/mobile.css">
+<style>
+    #main-header ul li:hover {
+        position:relative;
+        top:-2px;
+    }
+    #section {
+        height: 40px;
+        font-size: var(--body1);
+        margin: 0 0 16px;
+        padding: 0 60px;
+    }
+    #section > div {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .section--container > div > div {
+        flex: 1;
+        text-align: center;
+    }
+    .section--container > div > div:nth-child(1) {
+        text-align: left;
+    }
+    .section--container > div > div:nth-child(3) {
+        text-align: right;
+    }
+    .project--container:hover {
+        position:relative;
+        top:-2px;
+    }
+    .project--container:hover #project-hamburger > div:nth-of-type(1) {
+        transform-origin: left center;
+        transform: scaleX(0.5);
+    }
+    .project--container:hover #project-hamburger > div:nth-of-type(3) {
+        transform-origin: right center;
+        transform: scaleX(0.5);
+    }
+    .project--container .project-image img:hover {
+        padding: 1rem 1rem;
+    }
+    #project {
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-gap:10px;
+        width: min(1200px, 100%);
+        padding: 0 40px;
+        margin: auto;
+        justify-content: center;
+        align-content: space-around;
+        flex-wrap: wrap;
+    }
+    .project--container {
+        width: min(100%, 359.66px);
+        height: 142px;
+        background-color: #333333;
+        border-radius: 10px;
+        padding: 16px;
+        display: flex;
+        gap: var(--gutter);
+        margin: -9px 0 16px;
+        cursor: pointer;
+        position: relative;
+    }
+    #project-hamburger {
+        display: flex;
+        flex-direction: column;
+        width: 20px;
+        height: 20px;
+        justify-content: space-between;
+        position:absolute;
+        right: 20px;
+    }
+    #project-hamburger > div {
+        background-color: #ececec77;
+        height:2.5px;
+        transition: 0.3s;
+    }
+    .project-image {
+        width: 70px;
+        height: 70px;
+        background-color: white;
+        border-radius: 50%;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .project-image img {
+        width: 70px;
+        padding: 1.5rem 1.5rem;
+    }
+    .project--container .project-content .project-memo {
+        display: flex;
+        align-content: space-around;
+        flex-direction: row;
+        font-size:15px;
+    }
+    .project-memo {
+        margin-top: 10px; 
+        text-align: center;
+    }
+    .project-info {
+        margin: 5px;
+    }
+    .project-info .project-theme {
+        font-size:20px;
+        font-weight: 400;
+        margin-bottom:8px;
+    }
+    .project-info .project-explain {
+        width: 55.66px;
+        height: 26px;
+        color: white;
+        background-color: #ececec77;
+        padding: 6px 8px;
+        border-radius: 5px;
+        font-size: 13px;
+        margin-top: 16px;
+        text-align: center;
+    }
+    .project-content .project-explain > div {
+        width:55.66px;
+        height:26px;
+        color:white;
+        background-color: #c54422;
+        padding:6px 8px;
+        border-radius: 5px;
+        font-size:13px;
+    }
+    .project-content .project-maker {
+        display: flex;
+        gap:10px;
+        margin-top: 20px;
+    }
+    .project-content .project-maker > div {
+        width:55.66px;
+        height:26px;
+        color:black;
+        background-color: #ececec77;
+        padding:6px 8px;
+        border-radius: 5px;
+        font-size:13px;
+    }
+    #footer-top {
+        background-color: #333333;
+        margin-top:30px;
+        padding:40px;
+    }
+    #footer-top div {
+        justify-content: space-between;
+        font-size:16px;
+        display: flex;
+        align-items: center;
+        align-content: space-around;
+        flex-wrap: wrap;
+        margin: 0 59px;
+        padding: 0 40px;
+    }
+    #footer-top div ul li a div {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: black;
+        position: relative;
+        margin: 0 0 5px 0;
+        padding:0 0;
+    }
+    #footer-top div ul li a {
+        display: flex;
+        gap:15px;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    #footer-top-things {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        justify-content: center;
+        padding: 0 20px;
+        gap:30px;
+        font-size:14px;
+    }
+    #footer-top div ul li:hover {
+        position:relative;
+        top:-2px;
+    }
+    #footer-bottom {
+        padding: 16px;
+    }
+    #footer-bottom div {
+        padding: 1px;
+        text-align: center;
+        font: inherit;
+        font-size: 12px;
+        color:#ffffff;
+    }
+    @media screen and (max-width: 800px) {
+    .project--container {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        height: auto;
+        align-items: center;
+        text-align: center;
+        margin:3px 10px;
+        padding: 40px 16px 16px;
+    }
+    .project-image {
+        margin-bottom: 16px;
+    }
+    .project-content {
+        align-items: center;
+    }
+    .section--container {
+        padding: 0 0;
+    }
+    }
+    @media screen and (max-width: 450px) {
+        .project--container {
+            height: auto;
+        }
+        #footer-top-things {
+            display:none;
+        }
+    }
+    @media screen and (max-width: 800px) {
+        #project {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    @media screen and (max-width: 450px) {
+        #project {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+</style>
+</head>
+<body>
+<header id="main-header">
+    <div class="main-header--container">
+    <h1>
+        <a href="/"><img src="./Piro21-responsive/piro-clone/images/logo.svg" alt="logo"></a>
+    </h1>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/">About Us</a></li>
+        <li><a href="/">Portfolio</a></li>
+        <li><a href="/">Interview</a></li>
+        <li><a href="/">Gallery</a></li>
+    </ul>
+    <label id="hamburger-icon">
+        <input type="checkbox" />
+        <div></div>
+        <div></div>
+        <div></div>
+        <aside class="sidebar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/">About Us</a></li>
+            <li><a href="/">Portfolio</a></li>
+            <li><a href="/">Interview</a></li>
+            <li><a href="/">Gallery</a></li>
+            <li><a href="/">Recruit</a></li>
+        </ul>
+        </aside>
+    </label>
+    </div>
+</header>
+<section id="section">
+    <div class="section--container">
+        <div>&lt;&nbsp; 20기</div>
+        <div style="font-size:24px">19기</div>
+        <div>18기 &nbsp;&gt;</div>
+    </div>
+</section>
+<div id="project">
+    <div class="project--container">
+        <div id="project-hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div>
+            <div class="project-image">
+                <img src="./Piro21-responsive/piro-clone/images/bi_bi02.png">
+            </div>
+            <div class="project-content">
+                <div class="project-memo">파이팅</div>
+            </div>
+        </div>
+        <div class="project-info">
+            <div class="project-theme">정해영</div>
+            <div class="project-explain" style="background-color: #c54422;">
+                <div>투수</div>
+            </div>
+        </div>
+    </div>
+    <div class="project--container">
+        <div id="project-hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div>
+            <div class="project-image">
+                <img src="./Piro21-responsive/piro-clone/images/bi_bi02.png">
+            </div>
+            <div class="project-content">
+                <div class="project-memo">파이팅</div>
+            </div>
+        </div>
+        <div class="project-info">
+            <div class="project-theme">김도영</div>
+            <div class="project-explain" style="background-color: #35a67b">
+                <div>내야수</div>
+            </div>
+        </div>
+    </div>
+    <div class="project--container">
+        <div id="project-hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div>
+            <div class="project-image">
+                <img src="./Piro21-responsive/piro-clone/images/bi_bi02.png">
+            </div>
+            <div class="project-content">
+                <div class="project-memo">파이팅</div>
+            </div>
+        </div>
+        <div class="project-info">
+            <div class="project-theme">이의리</div>
+            <div class="project-explain" style="background-color: #c54422;">
+                <div>투수</div>
+            </div>
+        </div>
+    </div>
+    <div class="project--container">
+        <div id="project-hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div>
+            <div class="project-image">
+                <img src="./Piro21-responsive/piro-clone/images/bi_bi02.png">
+            </div>
+            <div class="project-content">
+                <div class="project-memo">파이팅</div>
+            </div>
+        </div>
+        <div class="project-info">
+            <div class="project-theme">이우성</div>
+            <div class="project-explain" style="background-color: #2188b6">
+                <div>외야수</div>
+            </div>
+        </div>
+    </div>
+    <div class="project--container">
+        <div id="project-hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div>
+            <div class="project-image">
+                <img src="./Piro21-responsive/piro-clone/images/bi_bi02.png">
+            </div>
+            <div class="project-content">
+                <div class="project-memo">파이팅</div>
+            </div>
+        </div>
+        <div class="project-info">
+            <div class="project-theme">최형우</div>
+            <div class="project-explain" style="background-color: #2188b6">
+                <div>외야수</div>
+            </div>
+        </div>
+    </div>
+    <div class="project--container">
+        <div id="project-hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div>
+            <div class="project-image">
+                <img src="./Piro21-responsive/piro-clone/images/bi_bi02.png">
+            </div>
+            <div class="project-content">
+                <div class="project-memo">파이팅</div>
+            </div>
+        </div>
+        <div class="project-info">
+            <div class="project-theme">박찬호</div>
+            <div class="project-explain" style="background-color: #35a67b">
+                <div>내야수</div>
+            </div>
+        </div>
+    </div>
+    <div class="project--container">
+        <div id="project-hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div>
+            <div class="project-image">
+                <img src="./Piro21-responsive/piro-clone/images/bi_bi02.png">
+            </div>
+            <div class="project-content">
+                <div class="project-memo">파이팅</div>
+            </div>
+        </div>
+        <div class="project-info">
+            <div class="project-theme">양현종</div>
+            <div class="project-explain" style="background-color: #c54422;">
+                <div>투수</div>
+            </div>
+        </div>
+    </div>
+    <div class="project--container">
+        <div id="project-hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div>
+            <div class="project-image">
+                <img src="./Piro21-responsive/piro-clone/images/bi_bi02.png">
+            </div>
+            <div class="project-content">
+                <div class="project-memo">파이팅</div>
+            </div>
+        </div>
+        <div class="project-info">
+            <div class="project-theme">홍종표</div>
+            <div class="project-explain" style="background-color: #35a67b">
+                <div>내야수</div>
+            </div>
+        </div>
+    </div>
+    <div class="project--container">
+        <div id="project-hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div>
+            <div class="project-image">
+                <img src="./Piro21-responsive/piro-clone/images/bi_bi02.png">
+            </div>
+            <div class="project-content">
+                <div class="project-memo">파이팅</div>
+            </div>
+        </div>
+        <div class="project-info">
+            <div class="project-theme">소크라테스</div>
+            <div class="project-explain" style="background-color: #2188b6">
+                <div>외야수</div>
+            </div>
+        </div>
+    </div>
+    <div class="project--container">
+        <div id="project-hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div>
+            <div class="project-image">
+                <img src="./Piro21-responsive/piro-clone/images/bi_bi02.png">
+            </div>
+            <div class="project-content">
+                <div class="project-memo">파이팅</div>
+            </div>
+        </div>
+        <div class="project-info">
+            <div class="project-theme">나성범</div>
+            <div class="project-explain" style="background-color: #2188b6">
+                <div>외야수</div>
+            </div>
+        </div>
+    </div>
+    <div class="project--container">
+        <div id="project-hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div>
+            <div class="project-image">
+                <img src="./Piro21-responsive/piro-clone/images/bi_bi02.png">
+            </div>
+            <div class="project-content">
+                <div class="project-memo">파이팅</div>
+            </div>
+        </div>
+        <div class="project-info">
+            <div class="project-theme">김선빈</div>
+            <div class="project-explain" style="background-color: #35a67b">
+                <div>내야수</div>
+            </div>
+        </div>
+    </div>
+    <div class="project--container">
+        <div id="project-hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div>
+            <div class="project-image">
+                <img src="./Piro21-responsive/piro-clone/images/bi_bi02.png">
+            </div>
+            <div class="project-content">
+                <div class="project-memo">파이팅</div>
+            </div>
+        </div>
+        <div class="project-info">
+            <div class="project-theme">변우혁</div>
+            <div class="project-explain" style="background-color: #35a67b">
+                <div>내야수</div>
+            </div>
+        </div>
+    </div>
+    <div class="project--container">
+        <div id="project-hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div>
+            <div class="project-image">
+                <img src="./Piro21-responsive/piro-clone/images/bi_bi02.png">
+            </div>
+            <div class="project-content">
+                <div class="project-memo">파이팅</div>
+            </div>
+        </div>
+        <div class="project-info">
+            <div class="project-theme">김태군</div>
+            <div class="project-explain" style="background-color: rgb(3, 43, 78)">
+                <div>포수</div>
+            </div>
+        </div>
+    </div>
+    <div class="project--container">
+        <div id="project-hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div>
+            <div class="project-image">
+                <img src="./Piro21-responsive/piro-clone/images/bi_bi02.png">
+            </div>
+            <div class="project-content">
+                <div class="project-memo">파이팅</div>
+            </div>
+        </div>
+        <div class="project-info">
+            <div class="project-theme">서건창</div>
+            <div class="project-explain" style="background-color: #35a67b">
+                <div>내야수</div>
+            </div>
+        </div>
+    </div>
+    <div class="project--container">
+        <div id="project-hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div>
+            <div class="project-image">
+                <img src="./Piro21-responsive/piro-clone/images/bi_bi02.png">
+            </div>
+            <div class="project-content">
+                <div class="project-memo">파이팅</div>
+            </div>
+        </div>
+        <div class="project-info">
+            <div class="project-theme">김호령</div>
+            <div class="project-explain" style="background-color: #2188b6">
+                <div>외야수</div>
+            </div>
+        </div>
+    </div>
+    <div class="project--container">
+        <div id="project-hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div>
+            <div class="project-image">
+                <img src="./Piro21-responsive/piro-clone/images/bi_bi02.png">
+            </div>
+            <div class="project-content">
+                <div class="project-memo">파이팅</div>
+            </div>
+        </div>
+        <div class="project-info">
+            <div class="project-theme">박정우</div>
+            <div class="project-explain" style="background-color: #2188b6">
+                <div>외야수</div>
+            </div>
+        </div>
+    </div>
+    <div class="project--container">
+        <div id="project-hamburger">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div>
+            <div class="project-image">
+                <img src="./Piro21-responsive/piro-clone/images/bi_bi02.png">
+            </div>
+            <div class="project-content">
+                <div class="project-memo">파이팅</div>
+            </div>
+        </div>
+        <div class="project-info">
+            <div class="project-theme">이범호</div>
+            <div class="project-explain" style="background-color: red">
+                <div>감독</div>
+            </div>
+        </div>
+    </div>
+</div>
+</main>
+<footer id="footer-top">
+    <div>
+        <ul>
+            <li><a href="#"><div id="footer-top-circle"></div>카카오톡 플러스친구</a></li>
+            <li><a href="#"><div id="footer-top-circle"></div>Instagram @pirogramming_official</a></li>
+            <li><a href="#"><div id="footer-top-circle"></div>pirogramming.official@gamil.com</a></li>
+        </ul>
+        <ul id="footer-top-things">
+            <li><a href="/">Home</a></li>
+            <li><a href="/">About Us</a></li>
+            <li><a href="/">Portfolio</a></li>
+            <li><a href="/">Interview</a></li>
+            <li><a href="/">Gallery</a></li>
+            <li><a href="/">Recruit</a></li>
+        </ul>
+    </div>
+</footer>
+<footer id="footer-bottom">
+    <div>@Pirogramming. 2023 All rights reserved.</div>
+</footer>
+</body>
+</html>
