@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+    <link rel="stylesheet" href="./style.css">
+    <title>스톱워치</title>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <i class="ri-timer-fill"></i>
+            피로그래밍 스톱워치
+        </div>
+        <div class="main">
+            <div class="main-time" id="time">
+                <span id="second">00</span>:<sapn id="milli">00</sapn>
+            </div>
+            <div class="main-button-box">
+                <button class="main-button" id="start">start</button>
+                <button class="main-button" id="stop">stop</button>
+                <button class="main-button" id="reset">reset</button>
+            </div>
+        </div>
+        <div class="record-box">
+            <div class="record-head">
+                <i class="ri-circle-line" id="head-ri-circle-line"></i>
+                <sapn class="record-head-text">구간 기록</sapn>
+                <i class="ri-delete-bin-fill"></i>
+            </div>
+            <div class="record-content">
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script> 
+</body>
+</html>

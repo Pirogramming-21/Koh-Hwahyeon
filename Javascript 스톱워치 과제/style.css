@@ -1,0 +1,117 @@
+body {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 70vh;
+    height: 90vh;
+}
+.title {
+    font-size: 37px;
+    font-weight: 700;
+    width: 70vh;
+    text-align: center;
+    margin: 14px;
+}
+.main {
+    background-color: beige;
+    width: 70vh;
+    border-radius: 40px;
+    height: 40%;
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 5px 5px 5px lightgray;
+}
+.main .main-time {
+    width: 55vh;
+    height: 17vh;
+    background-color: white;
+    border-radius: 40px;
+    margin: 21px;
+    box-shadow: 5px 5px 5px lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 90px;
+}
+.main-button-box {
+    display: flex;
+}
+.main-button {
+    width: 6vh;
+    height: 6vh;
+    margin: 0 56px;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px lightgray;
+    font-size: 18px;
+    cursor: pointer;
+}
+.record-box {
+    background-color: white;
+    height: 25vh;
+    width: 76vh;
+    border-radius: 16%;
+}
+.record-head {
+    height: 8vh;
+    border-radius: 40px 40px 0 0;
+    background-color: beige;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ri-circle-line, .ri-checkbox-circle-line{
+    width:20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+    cursor: pointer;
+}
+.record-head-text {
+    width:36vh;
+    font-size: 27px;
+    text-align: center;
+}
+.ri-delete-bin-fill {
+    width: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+    cursor: pointer;
+}
+.ri-delete-bin-fill:hover {
+    color: red;
+}
+.record-content {
+    height: 17vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+.record {
+    margin: 0 0;
+    font-size: 27px;
+    height: 7vh;
+    border-radius: 40px 40px 0 0;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.record-line {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
