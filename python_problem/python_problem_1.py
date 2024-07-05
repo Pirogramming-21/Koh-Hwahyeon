@@ -19,6 +19,7 @@ while result:
         print(f"playerA : {num+i+1}")
         if (num+i+1)==31:
             result=False
+            winner='B'
             break
     num+=A
     if result==False:
@@ -39,8 +40,14 @@ while result:
         print(f"playerB : {num+i+1}")
         if (num+i+1)==31:
             result=False
+            winner='A'
             break
     num+=B
     if result==False:
         break
+
+if winner=='A':
+    print('playerA win!')
+else:
+    print('playerB win!')
 
