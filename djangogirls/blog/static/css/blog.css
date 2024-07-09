@@ -1,12 +1,17 @@
 h1 a {
     color:#FCA205;
-    font-family: 'Lobster';
+    font-family: 'Hanna', sans-serif;
+    font-weight: 700;
+}
+h1 {
+    font-family: 'Hanna', sans-serif;
+    font-weight: 600;
 }
 body {
     padding-left: 15px;
 }
 .page-header {
-    background-color: #ff9400;
+    background-color: lightblue;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
 }
@@ -22,11 +27,11 @@ body {
 }
 
 h1, h2, h3, h4 {
-    font-family: 'Lobster', cursive;
+    font-family: 'Hanna',sans-serif;
 }
-
 .date {
     color: #828282;
+    text-align: right;
 }
 
 .save {
