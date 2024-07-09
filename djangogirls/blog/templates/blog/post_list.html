@@ -4,17 +4,14 @@
     </head>
     <body>
         <div>
-            <h1><a href="">Hwahyeon Blog</a></h1>
+            <h1><a href="/">Hwahyeon Blog</a></h1>
         </div>
-        <div>
-            <p>published: 2024-07-09, 20:12</p>
-            <h2><a href="">My first post</a></h2>
-            <p>안녕하세요! 제 블로그에 오신 걸 환영합니다~*^o^*~</p>
-        </div>
-        <div>
-            <p>published: 2024-07-09, 20:19</p>
-            <h2><a href="">My second post</a></h2>
-            <p>오늘은 저녁으로 게장을 먹었는데 너무 맛있었습니다! 제 인생 양념게장을 만난 것 같습니다~</p>
-        </div>
+        {% for post in posts %}
+            <div>
+                <p>published: {{ post.published_date }}</p>
+                <h1><a href="">{{ post.title }}</a></h1>
+                <p>{{ post.text|linebreaksbr }}</p>
+            </div>
+        {% endfor %}
     </body>
 </html>
