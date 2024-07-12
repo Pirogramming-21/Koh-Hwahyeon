@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="detail_container">
+        {% if review.image %}
+            <img src="{{ review.image.url }}">
+        {% else %}
+            <p>이미지 없음</p>
+        {% endif %}
+        <div class="detail_container_list">
+            <h2>{{ title }}</h2>
+            <p>개봉년도: {{ year }}년</p>
+            <p>장르: {{ genre }}</p>
+            <p>감독: {{ director }}</p>
+            <p>주연: {{ actor }}</p>
+            <p>러닝타임: {{ time }}</p>
+            <p>별점: {{ star }}</p>
+            <p>리뷰: {{ newreview }}</p>
+        </div>
+        <a href="/reviews/{{ review.id }}/update/">수정</a>
+        <form action="/reviews/{{ review.id }}/delete/" method="post">
+            {% csrf_token %}
+            <div>
+                <input type="submit" value="삭제">
+            </div>
+        </form>
+    </div>
+{% endblock %}

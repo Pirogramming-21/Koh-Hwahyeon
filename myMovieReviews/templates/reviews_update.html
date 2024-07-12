@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="update_container">
+    <h2>Update Review</h2>
+    <form action="/reviews/{{ review.id }}/update/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        제목: <input name="title" placeholder="제목" value="{{review.title}}"><br/>
+        <div class="form-group">
+            <label for="image"></label><br/>
+            {% if review.image %}
+            <div>
+                <img src="{{ review.image.url }}" alt="Image" style="width: 50px; height:50px;">
+                <p>이미지: {{ review.image.name }}</p>
+            </div>
+            {% else %}
+                <p>이미지 없음</p>
+            {% endif %}
+            <input type="file" class="form-control-file" id="reviews-img" name="image">
+        </div>
+        <p>개봉년도: <input name="year" placeholder="개봉년도" value="{{review.year}}"><br/></p>
+        <p>장르: {{ form.genre }}<br/></p>
+        <p>별점: <input name="star" placeholder="별점" value="{{review.star}}"><br/></p>
+        <p>러닝타임: <input name="time" placeholder="러닝타임" value="{{review.time}}"><br/></p>
+        <p>리뷰: <textarea name="newreview" placeholder="리뷰" style="width: 502px; height: 167px;">{{review.newreview}}</textarea><br/></p>
+        <p>감독: <input name="director" placeholder="감독" value="{{review.director}}"><br/></p>
+        <p>배우: <input name="actor" placeholder="배우" value="{{review.actor}}"><br/></p>
+        <div>
+            <input type="submit" value="저장" class="update_save">
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="create_container">
+    <h2>Add a New Review</h2>
+    <form action="/reviews/create/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>제목: <input name="title" placeholder="제목"></p>
+        <p class="form-group">
+            이미지: <input type="file" class="form-control-file" id="reviews-img" name="image">
+        </p>
+        <p>개봉년도: <input name="year" placeholder="개봉년도"></p>
+        <p>장르: {{ form.genre }}</p>
+        <p>별점: <input name="star" placeholder="별점"></p>
+        <p>러닝타임: <input name="time" placeholder="러닝타임"></p>
+        <p>리뷰: <textarea name="newreview" placeholder="리뷰" style="width: 502px; height: 167px;"></textarea></p>
+        <p>감독: <input name="director" placeholder="감독"></p>
+        <p>배우: <input name="actor" placeholder="배우"></p>
+        <p><input type="submit" value="저장" class="create_save"></p>
+    </form>
+</div>
+{% endblock %}

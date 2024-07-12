@@ -1,0 +1,135 @@
+body {
+    background-color: #ffebee;
+    margin: 0;
+    font-family: 'SUIT-Regular';
+}
+h1 a, h2 a {
+    color:black;
+    text-decoration: none;
+}
+h1 a:visited, h2 a:visited, .add_review {
+    color:black;
+    text-decoration: none;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: aliceblue;
+    padding: 0px 60px 0px 766px;
+    height: 12vh;
+}
+.content_list {
+    display: flex;
+}
+.add_review i {
+    font-size: 33px;
+}
+.list_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 154px 1px;
+    height: 55vh;
+}
+.content_list {
+    display: block;
+    background-color: white;
+    height: 50vh;
+    width: 32vh;
+    margin: 0 12px;
+    border-radius: 10px;
+}
+.content_list h2 {
+    text-align: center;
+}
+.content_list div {
+    padding: 0px 40px 0px;
+    margin: -14px 0 0;
+}
+.content_list div img {
+    width: 245px;
+    height: 312px;
+}
+.detail_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 71vh;
+    background-color: white;
+    margin: 80px 39px;
+    border-radius: 10px;
+}
+.detail_container img {
+    width: 438px;
+    margin: 0 29px;
+    height: 564px;
+}
+.detail_container_list {
+    margin-bottom: 28px;
+    font-size: 20px;
+}
+.detail_container a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    margin-top: 523px;
+    border: 2px solid darkgray;
+    border-radius: 7px;
+    padding: 3px;
+}
+.detail_container input {
+    background-color: white;
+    border-color: white;
+    border-style: none;
+    font-size: 18px;
+    border: 2px solid darkgray;
+    border-radius: 7px;
+    padding: 3px;
+    margin: 539px 9px 0;
+}
+.detail_container input:hover {
+    cursor: pointer;
+}
+.create_container {
+    background-color: white;
+    width: 57vh;
+    height: 70vh;
+    margin: 67px 693px;
+    font-size: 19px;
+    padding: 20px 20px;
+    border-radius: 10px;
+}
+.update_container {
+    background-color: white;
+    width: 57vh;
+    height: 72vh;
+    margin: 55px 693px;
+    font-size: 19px;
+    padding: 20px 20px;
+    border-radius: 10px;
+}
+.create_container form input, .update_container form input{
+    height:28px;
+}
+.create_container p, .update_container p {
+    margin: 13px 0px;
+}
+.form-group div {
+    display: flex;
+    margin-bottom: 6px;
+}
+.create_save, .update_save {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 7px;
+}
+.create_save:hover, .update_save:hover {
+    cursor: pointer;
+}
+@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
