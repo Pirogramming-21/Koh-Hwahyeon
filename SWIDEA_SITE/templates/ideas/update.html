@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>아이디어 수정</title>
+{% endblock %}
+
+{% block content %}
+<div class="idea_update">
+    <h2>Idea Dtail Update</h2>
+    <p>아이디어 세부내용 수정 페이지 입니다. 구체화하거나 내용을 변경해 보아요.</p>
+    
+    <form 
+        action="{% url 'ideas:update' pk %}"
+        method="post"
+        enctype="multipart/form-data">
+        {% csrf_token %} {{form.as_p}}
+        <button>SUBMIT</button>
+    </form>
+</div>
+{% endblock %}

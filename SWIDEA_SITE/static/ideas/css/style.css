@@ -1,0 +1,177 @@
+body {
+    margin: 0;
+    padding: 0;
+    color: black;
+    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('https://static.wanted.co.kr/images/events/1596/146d5acc.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 62px;
+}
+h1, .header a {
+    text-decoration: none;
+}
+.header a{
+    margin-top: 36px;
+}
+h1:visited, .header a:visited{
+    color:black;
+}
+.idea_list, .idea_detail, .idea_create, .tool_update, .tool_list, .tool_detail, .tool_create, .idea_update {
+    background-color: rgba(255, 255, 255, 0.7);
+    margin: 62px;
+    height: 70vh;
+    text-align: center;
+}
+.idea_list h2, .idea_create h2, .idea_detail h2, .idea_update h2, .tool_list h2, .tool_create h2, .tool_detail h2, .tool_update h2 {
+    padding-top: 26px;
+    font-size:30px;
+}
+
+.errorlist li {
+    display: none;
+}
+.idea_list form {
+    text-align: right;
+    margin: -6px 160px;
+}
+.idea-item {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+    width: 30vh;
+    height: 43vh;
+    background-color: lightblue;
+    margin-bottom: 40px;
+    margin-left: 27px;
+}
+.idea-image {
+    display: block;
+    width: 24vh;
+    height: 24vh;
+    margin: 23px 30px;
+}
+
+.star-btn {
+    position: absolute;
+    top: 17px;
+    right: 28px;
+    font-size: 2em;
+    color: gray;
+    cursor: pointer;
+}
+
+.star-btn.gold {
+    color: gold;
+}
+.idea_list_content a {
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+}
+.interest-buttons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+.interest-btn {
+    border: 0;
+    background-color: transparent;
+    font-size: 27px;
+    margin-top: -18px;
+}
+.interest-btn:hover {
+    cursor: pointer;
+}
+.pagination a{
+    text-decoration: none;
+}
+.idea_list footer {
+    font-size: 21px;
+}
+.idea_detail_content {
+    display: flex;
+    justify-content: center;
+    width: 123vh;
+    height: 42vh;
+    margin: 41px 138px;
+}
+.idea_detail_text {
+    margin: 87px 63px;
+    text-align: left;
+}
+.idea_detail_text p {
+    font-size: 20px;
+}
+.idea_detail form button, .tool_detail form button {
+    border: 0;
+    background-color: red;
+    color: white;
+    border-radius: 7px;
+    font-size: 21px;
+    padding: 2px;
+}
+.idea_detail_form_a1, .tool_detail_form_a1 {
+    text-decoration: none;
+    color: black;
+    margin: 0px 136px;
+    background-color: white;
+    border-radius: 7px;
+    font-size: 20px;
+    padding: 4px;
+}
+.idea_detail_form_a2, .tool_detail_form_a2 {
+    text-decoration: none;
+    color: black;
+    color: white;
+    background-color: skyblue;
+    border-radius: 7px;
+    font-size: 20px;
+    padding: 4px;
+}
+.idea_update form, .idea_create form, .tool_update form, .tool_create form {
+    margin: 63px 491px 63px 646px;
+    text-align: left;
+    height: 47vh;
+}
+.idea_update form button, .idea_create form button, .tool_update form button, .tool_create form button {
+    border: 1px solid black;
+    background-color: transparent;
+    margin: 0 161px;
+    border-radius: 17px;
+    padding: 8px;
+}
+.idea_update form button:hover, .idea_create form button:hover, .tool_update form button:hover, .tool_create form button:hover {
+    cursor: pointer;
+}
+.tool_list {
+    padding: 0 133px;
+}
+.tool_list_content div {
+    display: flex;
+    align-items: center;
+}
+.tool_list_p1 {
+    margin: 0 114px;
+}
+.tool_list_content div a {
+    text-decoration: none;
+    color: black;
+    font-size: 22px;
+}
+.tool_detail_content {
+    margin: 100px 465px;
+    text-align: left;
+}
+.tool_detail_content ul li a {
+    text-decoration: none;
+    color: black;
+}
+.idea_detail_text_p a {
+    text-decoration: none;
+    color: black;
+}

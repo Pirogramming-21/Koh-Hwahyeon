@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>아이디어 관리</title>
+{% endblock %}
+
+{% block content %}
+<div class="idea_list">
+    <h2>Idea List</h2>
+    <p class="idea_list_ment">나의 아이디어를 잊지 말고 기록해보세요</p>
+    <form method="get" action="">
+        {{ sort_form.as_p }}
+    </form>
+    {% for idea in page_obj %}
+    <div class="idea-item">
+        {%  if idea.image.url != null and idea.image.url != '' %}
+            <img src="{{idea.image.url}}" alt="대체텍스트" class="idea-image">
+        {% else %}
+            <p>이미지 없음</p>
+        {% endif %}
+        <span class="star-btn {% if idea.ideastar_set.count > 0 %}gold{% endif %}" data-idea-id="{{ idea.id }}">
+            ★
+        </span>
+        <div class="idea_list_content">
+            <a href="{% url 'ideas:detail' idea.pk %}">
+                {{idea.title}}
+            </a>
+            <hr>
+            <p>예상 개발 툴: {{idea.tool}}</p>
+            <div class="interest-buttons">
+                아이디어 관심도:
+                <button class="interest-btn" data-idea-id="{{ idea.id }}" data-action="increase">+</button>
+                <span class="interest-count"> {{ idea.interest }} </span>
+                <button class="interest-btn" data-idea-id="{{ idea.id }}" data-action="decrease" style="font-size: 48px;
+    margin-top: -26px;">-</button>
+                <br><br>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <footer>
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.sort_by %}&sort_by={{ request.GET.sort_by }}{% endif %}">&lt;</a>
+            {% else %}
+                <a href="?page=1{% if request.GET.sort_by %}&sort_by={{ request.GET.sort_by }}{% endif %}">&lt;</a>
+            {% endif %}
+            
+            <span>{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+            
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}{% if request.GET.sort_by %}&sort_by={{ request.GET.sort_by }}{% endif %}">&gt;</a>
+            {% else %}
+                <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.sort_by %}&sort_by={{ request.GET.sort_by }}{% endif %}">&gt;</a>
+            {% endif %}
+        </div>
+    </div>
+    </footer>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const csrfToken='{{csrf_token}}';
+        document.getElementById('sort-options').addEventListener('change', function() {
+            this.form.submit();
+        });
+
+        document.querySelectorAll('.star-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const ideaId = this.dataset.ideaId;
+
+                fetch(`/toggle_star/${ideaId}/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': csrfToken
+                    },
+                    body: `csrfmiddlewaretoken=${csrfToken}`
+                })
+                .then(response => response.text())
+                .then(text => {
+                    this.classList.toggle('gold', text === "true");
+                });
+            });
+        });
+
+        document.querySelectorAll('.interest-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const ideaId = this.dataset.ideaId;
+                const action = this.dataset.action;
+
+                fetch(`/update_interest/${ideaId}/${action}/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': csrfToken
+                    },
+                    body: `csrfmiddlewaretoken=${csrfToken}`
+                })
+                .then(response => response.text())
+                .then(text => {
+                    this.closest('.idea-item').querySelector('.interest-count').textContent = text;
+                });
+            });
+        });
+    });
+</script>
+
+{% endblock %}
