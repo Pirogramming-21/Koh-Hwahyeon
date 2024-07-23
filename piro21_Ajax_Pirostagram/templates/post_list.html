@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<title>{{ author.name }}의 게시글</title>
+
+{% endblock %}
+
+{% block content %}
+    <div class="post-container">
+        <div class="user-content">
+            <a href="{% url 'users:create' %}">유저 등록</a>
+            <a href="{% url 'users:list' %}">유저 관리</a>
+        </div>
+        <form method="get" action="" id="post-sort">
+            {{ sort_form.as_p }}
+        </form>
+        <div class="post-list">
+            {% for post in posts %}
+            <div class="item post-id-{{ post.id }}">
+                {% if post.image.url %}
+                    <img src="{{ post.image.url }}" alt="대체텍스트">
+                {% endif %}
+                <a href="{% url 'posts:detail' post.author.id %}">
+                    작성자: {{ post.author }}
+                </a><br>
+                제목:{{ post.title }}<br>
+                내용:{{ post.text }}<br>
+                <div class="info">
+                    {% if post.author_image %}
+                            <img src="{{ post.author_image.url }}">
+                    {% endif %}
+                    <button class="post__like" onclick="onClickLike({{ post.id }})">
+                        <i class="bi {% if post.id in user_liked_posts %}bi-heart-fill{% else %}bi-heart{% endif %}" id="heart-icon-{{ post.id }}"></i>
+                        <span class="like-count" id="like-count-{{ post.id }}">{{ post.like }}</span>
+                    </button>
+                    <div id="comment_list_{{ post.id }}">
+                        {% for comment in post.comments.all %}
+                        <div class="comment-item" id="comment-{{ comment.id }}">
+                            <p>{{ comment.content }}</p>
+                            <button onclick="delete_comment({{ comment.id }})">삭제</button><br>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <input type="text" id="comment_{{ post.id }}" name="content" placeholder="댓글 입력">
+                    <button onclick="make_comment({{ post.id }})" type="submit">작성</button>
+                </div>
+            </div><br><br>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const csrfToken='{{csrf_token}}';
+            const sortOptions = document.getElementById('sort-options');  
+            if (sortOptions) {
+                sortOptions.addEventListener('change', function() {
+                    this.form.submit();
+                });
+            }
+        });
+    
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.post-id-{{ post.id }}').forEach(post => {
+                const postId = post.classList[1].split('-')[2];
+                const heartIcon = document.getElementById(`heart-icon-${postId}`);
+                if (localStorage.getItem(`liked-${postId}`) === 'true') {
+                    heartIcon.classList.add('bi-heart-fill');
+                    heartIcon.classList.remove('bi-heart');
+                }
+            });
+        });
+
+        const requestLike = new XMLHttpRequest();
+
+        const onClickLike = (id) => {
+            const heartIcon = document.getElementById(`heart-icon-${id}`);
+            const isLiked = heartIcon.classList.contains("bi-heart-fill");
+            const url = "{% url 'posts:like_ajax' %}";
+            requestLike.open("POST", url, true);
+            requestLike.setRequestHeader(
+                "Content-Type",
+                "application/x-www-form-urlencoded"
+            );
+            requestLike.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+            requestLike.send(JSON.stringify({ id: id, type: isLiked ? "cancel" : "like" }));
+        };
+
+        requestLike.onreadystatechange = () => {
+            if (requestLike.readyState === XMLHttpRequest.DONE) {
+                if (requestLike.status < 400) {
+                    const { id, like_count, liked } = JSON.parse(requestLike.responseText);
+                    const element = document.querySelector(`.post-id-${id} .like-count`);
+                    const heartIcon = document.getElementById(`heart-icon-${id}`);
+                    element.innerHTML = like_count;
+                    heartIcon.classList.toggle("bi-heart", !liked);
+                    heartIcon.classList.toggle("bi-heart-fill", liked);
+                }
+            }
+        };
+
+
+        const requestComment = new XMLHttpRequest();
+
+        const make_comment = (post_id) => {
+            const content = document.getElementById(`comment_${post_id}`).value;
+            const url = "{% url 'posts:comment_ajax' %}";
+            requestComment.open("POST", url, true);
+            requestComment.setRequestHeader(
+                "Content-Type",
+                "application/x-www-form-urlencoded"
+            );
+            requestComment.send(JSON.stringify({ post_id:post_id, content:content }));
+        }
+
+        requestComment.onreadystatechange = () => {
+            if (requestComment.readyState === XMLHttpRequest.DONE) {
+                if (requestComment.status < 400) {
+                    const response = JSON.parse(requestComment.responseText);
+                    const post_id = response.post_id;
+                    const commentList = document.getElementById(`comment_list_${post_id}`);
+                    const newComment = document.createElement('div');
+                    
+                    newComment.classList.add('comment-item');
+                    newComment.id = `comment-${response.comment_id}`;
+                    newComment.innerHTML = `
+                        <p>${response.content}</p>
+                        <button onclick="delete_comment(${response.comment_id})">삭제</button>
+                        `;
+                    
+                    commentList.appendChild(newComment);
+                    document.getElementById(`comment_${post_id}`).value = "";
+                }
+            }
+        };
+
+        
+        const requestDelete = new XMLHttpRequest();
+
+        const delete_comment = (comment_id) => {
+            const url = "{% url 'posts:delete_comment_ajax' %}";
+            requestDelete.open('POST', url, true);
+            requestDelete.setRequestHeader(
+                "Content-Type",
+                "application/x-www-form-urlencoded"
+            );
+            
+            requestDelete.onreadystatechange = () => {
+                if (requestDelete.readyState === XMLHttpRequest.DONE) {
+                    if (requestDelete.status < 400) {
+                        const response = JSON.parse(requestDelete.responseText);
+                        if (response.success) {
+                            const commentElement = document.getElementById(`comment-${comment_id}`);
+                            commentElement.remove();
+                        } 
+                    }
+                }
+            }
+            requestDelete.send(JSON.stringify({ comment_id:comment_id }));
+        };
+    </script>
+{% endblock %}
+
+

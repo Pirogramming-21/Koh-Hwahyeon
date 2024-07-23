@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>user_list</title>
+{% endblock %}
+
+{% block content %}
+<div class="user-list">
+    {% for user in users %}
+    <div>
+        <a href="{% url 'users:update' user.pk %}">
+            <button type="button" class="btn btn-outline-secondary">
+                <span>이름: {{ user.name }}</span>
+            </button>
+        </a>
+    </div>
+    {% endfor %}
+    <input type="text" id="user-search-input" placeholder="유저 검색">
+    <button type="button" onclick="searchUser()">검색</button>
+    <ul id="user-search-results"></ul>
+</div>
+
+<script>
+    const requestUserSearch = new XMLHttpRequest();
+
+    const searchUser = () => {
+        const query = document.getElementById('user-search-input').value;
+        const url = `{% url 'users:search_user' %}?search_txt=${query}`;
+        requestUserSearch.open('GET', url, true);
+        requestUserSearch.onreadystatechange = () => {
+            if (requestUserSearch.readyState === XMLHttpRequest.DONE) {
+                if (requestUserSearch.status < 400) {
+                    const data = JSON.parse(requestUserSearch.responseText);
+                    const userSearchResults = document.getElementById('user-search-results');
+                    userSearchResults.innerHTML = '';
+                    data.forEach(user => {
+                        const li = document.createElement('li');
+                        li.textContent = user.name;
+                        userSearchResults.appendChild(li);
+                    });
+                }
+            }
+        };
+        requestUserSearch.send();
+    };
+</script>
+{% endblock %}
+
+
+
+
+
+
+

@@ -1,0 +1,49 @@
+body {
+    background-color: white;
+}
+.bi-heart {
+    color: grey; 
+}
+
+.bi-heart-fill {
+    color: black; 
+}
+.post-container, .post-create, .post-detail, .post-update, .user-create, .user-list, .user-update {
+    text-align: center;
+    margin-top: -402px;
+}
+.post-container {
+    text-align: center;
+    margin-top: -402px;
+}
+.user-content {
+    margin-left: 1300px;
+}
+.user-content a {
+    text-decoration: none;
+}
+.user-content a:visited {
+    text-decoration: none;
+    color:black;
+}
+#post-sort {
+    margin-left: 1300px;
+}
+.post-list, item {
+    margin-top: -50px;
+}
+ul {
+    list-style-type: none;
+}
+ul li {
+    font-size:30px;
+}
+.base-search a {
+    color:blue;
+}
+.base-search a:visited {
+    text-decoration: none;
+}
+.bi-plus-square {
+    color:blue;
+}
